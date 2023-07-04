@@ -4,6 +4,7 @@ const app = express();
 const dbConnect = require("./config/dbConfig")
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const cookieParser = require("cookie-parser");
 
 // handling uncaught exception 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 // routes 
 app.use("/api/v1", productRoutes);
 app.use("/api/v1",userRoutes);
+app.use("/api/v1",orderRoutes);
 
 
 const server = app.listen(process.env.PORT, () => {
@@ -39,4 +41,4 @@ process.on("unhandledRejection", (err) => {
     server.close(() => {
         process.exit(1)
     });
-})
+});
